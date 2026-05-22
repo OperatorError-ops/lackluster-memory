@@ -1,25 +1,36 @@
-def curse(weapon_damage):
-    lesser_cursed = weapon_damage * .5
-    greater_cursed = weapon_damage * .25
-    return lesser_cursed, greater_cursed
+def get_punched(health, armor = 0):
+    damage = 50 - armor
+    new_health = health - damage
+    return new_health
 
 
-# Don't modify below this line
+def get_slashed(health, armor = 0):
+    armor_default = 0
+    damage  = 100 - armor
+    new_health = health - damage
+    return new_health
 
 
-def test(weapon_damage):
-    print("Weapon's base damage:", float(weapon_damage))
-    print("Cursing...")
-    lesser_cursed, greater_cursed = curse(weapon_damage)
-    print("With lesser curse the damage is:", float(lesser_cursed), "damage.")
-    print("With greater curse the damage is:", float(greater_cursed), "damage.")
-    print("=====================================")
+# Don't touch below this line
 
 
-def main():
-    test(100)
-    test(500)
-    test(1000)
+def test(health, armor):
+    print(f"Running tests for health {health} and armor {armor}")
+    print("========================================")
+    print(f"Health: {health}, Armor: {armor}")
+    print(f"Health after punch: {get_punched(health, armor)}")
+    print("----------------------------------------")
+    print(f"Health: {health}, Armor: {armor}")
+    print(f"Health after slash: {get_slashed(health, armor)}")
+    print("----------------------------------------")
+    print(f"Health: {health}, Armor: no armor!")
+    print(f"Health after slash: {get_slashed(health)}")
+    print("----------------------------------------")
+    print(f"Health: {health}, Armor: no armor!")
+    print(f"Health after punch: {get_punched(health)}")
+    print("----------------------------------------\n")
 
 
-main()
+test(400, 5)
+test(300, 3)
+test(200, 1)
